@@ -1,0 +1,34 @@
+body {
+    background-color: blueviolet;
+}
+
+input:focus {
+    box-shadow: none !important;
+}
+
+.login {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 70px;
+    background: white;
+    height: 400px;
+    justify-content: center;
+    padding: 50px;
+}
+
+.login>div {
+    padding: 45px 0px 45px 0px;
+}
+
+.login h3 {
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.login input {
+    padding: 23px;
+}
+
+.login button {
+    width: 100px;
+}

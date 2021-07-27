@@ -1,0 +1,14 @@
+input:focus {
+    box-shadow: none !important;
+}
+
+header .image-category img {
+    margin-top: 20px;
+    height: auto;
+    width: 80px;
+}
+
+header .image-profile img {
+    width: 50px;
+    height: auto;
+}

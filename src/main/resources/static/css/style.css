@@ -1,0 +1,11 @@
+main .btn-active {
+    width: 140px;
+}
+
+main .table tr>th {
+    vertical-align: middle;
+}
+
+main .table tr>td {
+    vertical-align: middle;
+}
