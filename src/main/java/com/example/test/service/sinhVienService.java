@@ -61,15 +61,12 @@ public class sinhVienService {
         return false;
     }
 
-    public void addListStudent(String name, String email, String password, String address, String dateOfBirth) {
-        sinhVien sv = new sinhVien();
-        sv.setAddress(address);
-        sv.setEmail(email);
-        sv.setName(name);
-        java.sql.Date date = java.sql.Date.valueOf(dateOfBirth);
-        sv.setDateOfBirth(date);
-        sv.setPassword(password);
+    public void addListStudent(sinhVien sv) {
         sinhVienRepository.save(sv);
+    }
+
+    public List<sinhVien> searchListSv(String name) {
+        return sinhVienRepository.findAll(Example.of(sinhVien.builder().id(0).name(name).password(null).dateOfBirth(null).email(null).address(null).deleted(false).build(), ExampleMatcher.matchingAll().withIgnorePaths("password", "dateOfBirth", "address", "email", "id").withIgnoreCase().withMatcher("name", ExampleMatcher.GenericPropertyMatchers.contains())));
     }
 
 

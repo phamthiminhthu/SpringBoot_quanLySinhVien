@@ -6,7 +6,11 @@ import com.example.test.service.sinhVienService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -60,20 +64,29 @@ public class studentController {
     }
 
     @PostMapping("/student/edit-success/{id}")
-    public String successEdit(sinhVien sv) {
+    public String successEdit(@Valid sinhVien sv) {
         sinhVienService.editStudent(sv);
         return "redirect:/api/v1/students/all";
     }
 
 
     @RequestMapping(value = "/student/add-student", method = RequestMethod.POST)
-    public String addStudent(@RequestParam("name") String name, @RequestParam("email") String email,
-                             @RequestParam("password") String password, @RequestParam("address") String address,
-                             @RequestParam("dateOfBirth") String dateOfBirth) {
-        System.out.println(name);
-        sinhVienService.addListStudent(name, email, password, address, dateOfBirth);
+    public String addStudent(@Valid sinhVien sv, BindingResult result, Model model) {
+        if(result.hasErrors()){
+            model.addAttribute("error", "chua hop le");
+            return "redirect:/api/v1/students/all";
+        }
+        sinhVienService.addListStudent(sv);
         return "redirect:/api/v1/students/all";
 
+    }
+
+
+    @GetMapping("/search")
+    public String searchField(@RequestParam("name") String name, Model model){
+        model.addAttribute("students", sinhVienService.searchListSv(name));
+        model.addAttribute("keyword", name);
+        return "page";
     }
 
 

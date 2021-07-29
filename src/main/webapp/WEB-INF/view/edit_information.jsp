@@ -31,10 +31,7 @@
                         <div class="col-12">
                             <label class="form-label">Name</label>
                             <input type="text" class="form-control" name="name" value="${svEdit.name}" required>
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
-                        </div>
+                          <c:if test="${fields.hasErrors('name')}"></c:if>
                         <div class="col-12">
                             <label class="form-label">Email</label>
                             <input type="text" class="form-control" name="email" value="${svEdit.email}" required>

@@ -73,9 +73,8 @@
                                 <div class="col-12">
                                     <label class="form-label">Name</label>
                                     <input type="text" class="form-control" name="name" required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
+                                    <c:out value="${error}">
+                                    </c:out>
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label">Email</label>
@@ -139,22 +138,25 @@
                     <tbody class="text-center">
                     <tr>
                         <th scope="row"></th>
-                        <td>
-                            <input type="text" class="form-control" placeholder="" aria-label="">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" placeholder="" aria-label="">
-                        </td>
-                        <td>
-                            <input type="date" class="form-control" placeholder="" aria-label="">
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" placeholder="" aria-label="Username">
-                        </td>
-
-                        <td></td>
+                        <form action="/api/v1/search" method="get">
+                            <td>
+                                <input type="text" class="form-control" placeholder="" aria-label="" >
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" placeholder="" aria-label="" name="name">
+                            </td>
+                            <td>
+                                <input type="date" class="form-control" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" placeholder="" aria-label="Username">
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-warning">Search</button>
+                            </td>
+                        </form>
                     </tr>
                     <c:forEach items="${students}" var="student" varStatus="loop">
                         <tr>
@@ -167,7 +169,7 @@
                             <td class="btn-active">
                                 <button type="button" class="btn btn-warning"><a
                                         href="<c:url value="/api/v1/student/${student.id}/edit"/>"> Sửa</a></button>
-                                <button type="button" class="btn btn-danger"><a
+                                <button type="submit" class="btn btn-danger"><a
                                         href="<c:url value="/api/v1/student/${student.id}/delete"/>">Xoá</a></button>
                             </td>
                         </tr>
